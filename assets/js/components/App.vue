@@ -1,14 +1,16 @@
 <template>
-    <!-- Your HTML tags -->
-    <h2 class="center"> Ahoy! </h2>
+   <!-- Your HTML tags-->
+   <h2 class="center"> Ahoy! </h2>
 </template>
 
 <script>
-    console.log("Loader");
+   // Your JavaScript code
+  console.log("Loaded")
 </script>
 
 <style>
-    .center {
-        text-align: center;
-    }
+  /* Your styles */
+  .center {
+     Text-align: center;
+  }
 </style>

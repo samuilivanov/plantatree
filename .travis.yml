@@ -27,7 +27,7 @@ install:
     # - php bin/console doctrine:fixtures:load -n --env=test
 
 script:
-    - php bin/phpunit
+    - php app/bin/phpunit
 
 notifications:
     email: samuil.ivanovbg@gmail.com

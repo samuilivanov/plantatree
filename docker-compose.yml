@@ -2,7 +2,7 @@ version: "3.3"
 services:
     traefik:
         image: traefik
-        command: --docker --docker.exposedbydefault=false
+        command: --docker --docker.exposedbydefault=true
         ports:
             - 80:80
         volumes:

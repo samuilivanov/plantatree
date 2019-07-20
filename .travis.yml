@@ -8,8 +8,7 @@ env:
 
 before_install:
     - docker-compose up -d
-    - docker-compose exec app bash
-    - composer self-update
 
 install:
+    - docker-compose exec app bash
     - composer install

@@ -17,6 +17,6 @@ before_install:
 script:
   - docker-compose -f docker-compose.travis.yml up -d
   - docker-compose -f docker-compose.travis.yml ps
-  - docker-compose exec app apt-get install --yes zip unzip
+  - docker-compose exec app sudo apt-get install --yes zip unzip
   - docker-compose exec app composer install
   - docker-compose exec app php bin/phpunit

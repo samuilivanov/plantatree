@@ -1,14 +1,19 @@
-language: php
-sudo: true
-services:
-    - docker
+sudo: required
 
 env:
-    - SYMFONY_VERSION="4.3.*" DB=mysql
+  DOCKER_COMPOSE_VERSION: 1.16.1
+
+services:
+  - docker
 
 before_install:
-    - docker-compose up -d
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - docker-compose -v
+  - docker -v
+  - mkdir symfony
 
-install:
-    - docker-compose exec app bash
-    - composer install
+script:
+  - docker-compose -f docker-compose.travis.yml up -d
+  - docker-compose -f docker-compose.travis.yml ps

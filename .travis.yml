@@ -4,7 +4,7 @@ services:
     - docker
 
 env:
-    - SYMFONY_VERSION="3.0.*" DB=mysql
+    - SYMFONY_VERSION="4.3.*" DB=mysql
 
 before_install:
     - docker-compose up -d

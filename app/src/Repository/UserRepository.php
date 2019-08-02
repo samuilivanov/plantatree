@@ -5,6 +5,9 @@ namespace App\Repository;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Mapping\ClassMetadata;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,11 +15,23 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends ServiceEntityRepository
+class UserRepository extends EntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(EntityManagerInterface $entityManager, ClassMetadata $metaData = null)
     {
-        parent::__construct($registry, User::class);
+        parent::__construct($entityManager, $metaData == null ? new ClassMetadata(User::class) : $metaData);
+    }
+
+    public function insert(User $user)
+    {
+        try {
+            $this->_em->persist($user);
+            $this->_em->flush();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+
     }
 
     // /**

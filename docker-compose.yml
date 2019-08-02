@@ -36,11 +36,12 @@ services:
             - ./services/mysql/utf8mb4.cnf:/etc/mysql/conf.d/utf8mb4.cnf:ro
 
     phpmyadmin:
-        image: phpmyadmin/phpmyadmin:4.7
+        image: phpmyadmin/phpmyadmin
         labels:
             - traefik.enable=true
-            - traefik.backend=phpmyadmin
-            - traefik.fromtend.rule=Host:phpadmin.app.localhost
+            - traefik.backend=pma
+            - traefik.frontend.rule=Host:pma.app.localhost
+            - traefik.port=80
         environment:
             PMA_HOST: mysql
             PMA_USER: foo
